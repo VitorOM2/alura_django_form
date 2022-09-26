@@ -1,3 +1,8 @@
+"""
+Módulo onde para a configuração das views relacionadas a passagens
+index - Página com formulário da passagem
+minha_consulta - Página que exibe os dados do formulário
+"""
 from django.shortcuts import render
 from passagens.forms import PassagemForms
 
