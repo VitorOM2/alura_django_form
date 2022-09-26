@@ -14,3 +14,4 @@ def minha_consulta(request):
         form = PassagemForms(request.POST)
         contexto = {'form':form}
         return render(request, 'minha_consulta.html', contexto)
+    return render(request, 'index.html', {form: PassagemForms()})
