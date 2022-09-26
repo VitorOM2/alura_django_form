@@ -7,3 +7,4 @@ class PassagemForms(forms.Form):
     destino = forms.CharField(label='Destino', max_length=100)
     ida     = forms.DateField(label='Ida')
     volta   = forms.DateField(label='Volta')
+    
