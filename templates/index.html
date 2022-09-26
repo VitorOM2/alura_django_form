@@ -1,10 +1,14 @@
 {% extends 'partials/base.html' %}
 
 {% block content %}
-<form action="{% url 'minha_consulta' %}" method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="OK" class="btn btn-success"/>
-</form>
+
+<section class="col-8">
+    <form action="{% url 'minha_consulta' %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="OK" class="btn btn-success"/>
+    </form>
+</section>
+
 {% endblock content %}
      

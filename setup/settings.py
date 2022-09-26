@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tempus_dominus',
     'passagens',
 ]
 
@@ -141,3 +142,5 @@ PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0,os.path.join(PROJECT_ROOT, '../apps'))
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TEMPUS_DOMINUS_LOCALIZE = True
