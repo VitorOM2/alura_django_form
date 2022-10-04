@@ -2,6 +2,7 @@
 """ Módulo para a criação de formulários """
 from datetime import datetime
 from passagens.classe_viagem import tipos_de_classe
+from passagens.validation import *
 from django import forms
 from tempus_dominus.widgets import DatePicker
 
@@ -24,10 +25,20 @@ class PassagemForms(forms.Form):
                                       required=False
     )
 
-    def clean(self) -> str:
-        """ Verifica se o campo origem é válido """
+    def clean(self) :
+        """ Função Clean """
         origem = self.cleaned_data.get('origem')
-        if any(char.isdigit() for char in origem):
-            raise forms.ValidationError('Origem inválida: Não inclua números')
-        return origem
-    
+        destino = self.cleaned_data.get('destino')
+        data_ida = self.cleaned_data.get('ida')
+        data_volta = self.cleaned_data.get('volta')
+        data_pesquisa = self.cleaned_data.get('data_pesquisa')
+        lista_de_erros = {}
+        campo_tem_algum_numero(origem, 'origem', lista_de_erros)
+        campo_tem_algum_numero(destino, 'destino', lista_de_erros)
+        origem_destino_iguais(origem, destino, lista_de_erros)
+        data_de_ida_maior_que_data_volta(data_ida,data_volta, lista_de_erros)
+        data_de_ida_menor_que_hoje(data_ida, data_pesquisa, lista_de_erros)
+        if lista_de_erros is not None:
+            for erro, mensagem_erro in lista_de_erros.items():
+                self.add_error(erro, mensagem_erro)
+        return self.cleaned_data
