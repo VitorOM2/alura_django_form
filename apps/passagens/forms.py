@@ -23,4 +23,11 @@ class PassagemForms(forms.Form):
                                       widget=forms.Textarea,
                                       required=False
     )
+
+    def clean(self) -> str:
+        """ Verifica se o campo origem é válido """
+        origem = self.cleaned_data.get('origem')
+        if any(char.isdigit() for char in origem):
+            raise forms.ValidationError('Origem inválida: Não inclua números')
+        return origem
     
